@@ -1,6 +1,6 @@
 INTEGRANTES:
 Martina Safenreiter - martinasafenreiter@hotmail.com
-Juan Francisco Camio Moreno - 
+Juan Francisco Camio Moreno - franciscocamiomoreno@gmail.com
 
 TEMÁTICA Y DESCRIPCIÓN:
 Nuestra pagina web es sobre indumentaria deportiva, seguimos con la tematica que habiamos elegido para nuestro primer trabajo de web 1. 
