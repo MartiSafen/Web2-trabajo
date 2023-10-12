@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <base href="<? echo BASE_URL ?>">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <a href="http://localhost/dashboard/Web2-trabajo/home">Home</a>
-    <a href="http://localhost/dashboard/Web2-trabajo/productos">Productos</a>
-    <a href="http://localhost/dashboard/Web2-trabajo/ingresar">Login</a>
+    <?php
+    require_once 'templates/header.phtml';
+    ?>
+    <ul>
+        <?php foreach($products as $product): ?>
+        <li> <?= $product->prenda_id ?></li>
+       
+        <?php endforeach ?>
+    </ul>
 </body>
 
 </html>

@@ -1,17 +1,21 @@
 <?php
-require_once 'app/views/HomeView.php';
-
+require_once './app/models/HomeModel.php';
+require_once './app/views/HomeView.php';
 class HomeController{
     private $view;
-    /* private $model; */
+    private $model; 
 
     public function __construct() {
+        $this->model = new HomeModel(); 
         $this->view = new HomeView();
-        /* $this->model = new HomeModel(); */
+       
     }
 
     public function showHome(){
-        $this-> view-> showHome();
+       $products= $this-> model-> showHome();
+        $this-> view-> showHome($products);
+       
+
     }
 }
 ?>
