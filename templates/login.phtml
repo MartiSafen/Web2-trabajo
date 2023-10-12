@@ -12,11 +12,7 @@ require_once 'templates/header.phtml';
             <input type="password" required class="form-control" id="password" name="password">
         </div>
 
-        <?php if ($error) : ?>
-            <div class='alert alert-danger' role='alert'>
-                <?= $error ?>
-            </div> 
-        <?php endif ?>
+   
        
         <button type="submit" class="btn btn-primary mt-3">Entrar</button>
     </form>
