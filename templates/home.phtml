@@ -3,11 +3,26 @@
     require_once 'templates/header.phtml';
     ?>
     <ul>
-        <?php foreach($products as $product): ?>
-        <li> <?= $product->prenda_id ?></li>
-       
+        <?php foreach($productos as $product): ?>
+            
+        <li> <?= $product->prenda_id ?></li>       
+        <li> <?= $product->id_compra ?></li>       
+        <li> <?= $product->talle ?></li>       
+        <li> <?= $product->hora ?></li>       
+        <li> <?= $product->vendedor ?></li>       
+
         <?php endforeach ?>
+        
     </ul>
+    <ul>
+
+    <?php foreach($categorias as $categoria): ?>
+        <li> <?= $categoria->prenda_id ?></li>       
+
+            <li> <?= $categoria->producto ?></li>       
+         <?php endforeach ?>
+         </ul>
+
 </body>
 
 </html>

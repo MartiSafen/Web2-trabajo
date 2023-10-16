@@ -11,11 +11,19 @@ class HomeController{
        
     }
 
-    public function showHome(){
-       $products= $this-> model-> showHome();
-        $this-> view-> showHome($products);
-       
+    public function showHome($id){
+       $productos = $this-> model->getProductosconCategoria($id);
+        $this-> view-> showProducts($productos);
 
     }
+  //  public function showAllProduct($id){
+   //     $product = $this->model->getProductById($id);
+    //    if($product){
+      //      $this->view->showDescription($product);
+     //   }
+       // else{
+      //      $this->view->error("error al insertar tarea");
+      //  }
+  //  }
 }
 ?>
