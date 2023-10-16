@@ -1,5 +1,7 @@
 <?php
 require_once 'templates/header.phtml';
+$admin = password_hash($password, PASSWORD_DEFAULT);
+
 ?>
 <div class="mt-5 w-25 mx-auto">
     <form method="POST" action="auth">

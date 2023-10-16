@@ -1,31 +1,66 @@
 <?php
-class ProductsModel{
 
+class productsModel{
     private $db;
-    
-    function __construct(){
-        $this->db = new PDO('mysql:host=localhost;'.'dbname=db_productos;charset=UTF8', 'root', '');
+
+    public function __construct(){
+        $this->db = new PDO('mysql:host=localhost;'.'dbname=db_tpe;charset=utf8','root','');
     }
-      public function stockList(){
-     $sentencia = $this->db->prepare('SELECT * FROM productos');
-     $sentencia->execute();
-     $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
-     return $products;
+    
+    function getProducts(){
+
+    
+        $query = $this->db->prepare("SELECT * FROM autos");
+        $query->execute();
+    
+        $autosbyid = $query->fetchAll(PDO::FETCH_OBJ);
+
+       return $autosbyid;
+       
+    
+    }
+
+    
+    
+    public function insertProducts( $prenda_id, $id_compra, $talle, $hora, $vendedor) {
+        $query = $this->db->prepare("INSERT INTO productos (prenda_id, id_compra, talle, hora, vendedor) VALUES (?,?,?,?,?)");
+        $query->execute([ $prenda_id, $id_compra, $talle, $hora, $vendedor]);
+
+        return $this->db->lastInsertId();
+    }
+
+    function deleteProductsById($id) {
+        $query = $this->db->prepare('DELETE FROM productos WHERE id = ?');
+        $query->execute([$id]);
+    }
+
+    public function getDescriptionProducts($id){
+        $query = $this->db->prepare("SELECT * FROM productos WHERE id=?");
+        $query->execute([$id]);
+        $productbyid = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
+        return $productbyid;
+    }
+
+    function getProductsbyid($id){
+        
+        $query = $this->db->prepare("SELECT * FROM productos WHERE id=?");
+        $query->execute([$id]);
+    
+        $productsbyid = $query->fetchAll(PDO::FETCH_OBJ);
+
+       return $productsbyid;
+    }
+
+    public function updateProducts($prenda_id, $id_compra, $talle, $hora, $vendedor) {
+        $query = $this->getProductsbyid($id_compra,$prenda_id,$talle,$hora,$vendedor);
+        $query = $this->db->prepare('UPDATE productos SET prenda_id=?, id_compra=?,talle=?,hora=?,vendedor=? WHERE id = ?');
+        $query->execute([$prenda_id, $id_compra, $talle, $hora, $vendedor]);
+        
+    }
+
+
+
+    
+
+
 }
-
-public function stockListCategoria(){
-    $sentencia = $this->db->prepare('SELECT * FROM categorias');
-    $sentencia->execute();
-    $categorias = $sentencia->fetchAll(PDO::FETCH_OBJ);
-    return $categorias;
-}
-
-
-}
-
-
-
-
-
-
-?>
