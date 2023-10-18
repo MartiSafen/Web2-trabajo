@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-10-2023 a las 22:27:40
+-- Tiempo de generación: 18-10-2023 a las 01:11:31
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -53,7 +53,7 @@ INSERT INTO `categorias` (`prenda_id`, `producto`, `tela`, `color`) VALUES
 --
 
 CREATE TABLE `productos` (
-  `prenda_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `id_compra` int(11) NOT NULL,
   `talle` varchar(45) NOT NULL,
   `hora` date NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`prenda_id`, `id_compra`, `talle`, `hora`, `vendedor`) VALUES
+INSERT INTO `productos` (`id`, `id_compra`, `talle`, `hora`, `vendedor`) VALUES
 (1, 1, 's', '2023-10-11', 'martina'),
 (2, 2, 'l', '2023-10-26', 'francisco'),
 (3, 2, 'l', '2023-10-26', 'francisco'),
@@ -78,6 +78,7 @@ INSERT INTO `productos` (`prenda_id`, `id_compra`, `talle`, `hora`, `vendedor`) 
 --
 
 CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
   `user` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -86,8 +87,9 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`user`, `password`) VALUES
-('webadmin', 'admin');
+INSERT INTO `usuario` (`id`, `user`, `password`) VALUES
+(1, 'webadmin', 'admin'),
+(2, 'martina', '123456');
 
 --
 -- Índices para tablas volcadas
@@ -103,13 +105,13 @@ ALTER TABLE `categorias`
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD PRIMARY KEY (`prenda_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`user`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -122,6 +124,12 @@ ALTER TABLE `categorias`
   MODIFY `prenda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -129,7 +137,7 @@ ALTER TABLE `categorias`
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`prenda_id`) REFERENCES `categorias` (`prenda_id`);
+  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id`) REFERENCES `categorias` (`prenda_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

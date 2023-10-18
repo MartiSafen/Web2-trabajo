@@ -1,11 +1,12 @@
 <?php
-require_once './app/controller/ProductsController.php';
-require_once './app/controller/HomeController.php';
-require_once './app/controller/LoginController.php';
-require_once './app/controller/CategoryController.php';
+require_once './app/controllers/HomeController.php';
+require_once './app/controllers/ProductsController.php';
+require_once './app/controllers/LoginController.php';
+require_once './app/controllers/CategoryController.php';
 
-$productController = new productController();
+
 $homeController = new homeController();
+$productController = new productController();
 $loginController = new loginController();
 $categoriaController = new categoriaController();
 
@@ -70,15 +71,15 @@ switch($params[0]){
         break;
 
     case 'formEdit':
-            $productController->showFormEditProducts($productbyid);
-            $id = $params[1];
-            $productController->editProducts($id);
-            break;
+        $productController->showFormEditPoducts($productsbyid);
+          $id = $params[1];
+           $productController->editProducts($id);
+         break;
     case 'filter':
-            $categoriaController->filter();
-            break;
+       $categoriaController->filter();
+          break;
 
-    case 'categorias':
+    case 'categoria':
             $categoriaController->showCategorias();
             break;
 
@@ -87,18 +88,18 @@ switch($params[0]){
             break;
 
     case 'deleteCategoria':
-            $id_compra = $params[1];
-            $categoriaController->deleteCategoria($id_compra);
+            $prenda_id = $params[1];
+            $categoriaController->deleteCategoria($prenda_id);
             break;
 
     case 'formEditCategoria':
             $categoriaController->showFormEdit($categoriabyid);
-            $id_comprador = $params[1];
+            $prenda_id = $params[1];
             $categoriaController->editCategoria($prenda_id);
             break;
 
         case 'formEditCategoria':
-              $id_compra = $params[1];
+              $prenda_id = $params[1];
               $categoriaController->formEditCategoria($prenda_id);
                 break;
 

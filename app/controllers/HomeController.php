@@ -1,29 +1,17 @@
 <?php
-require_once './app/models/HomeModel.php';
+
 require_once './app/views/HomeView.php';
-class HomeController{
+
+class homeController{
     private $view;
-    private $model; 
-
+  
     public function __construct() {
-        $this->model = new HomeModel(); 
-        $this->view = new HomeView();
-       
+      $this->view = new homeView();
     }
-
-    public function showHome($id){
-       $productos = $this-> model->getProductosconCategoria($id);
-        $this-> view-> showProducts($productos);
-
+  
+    public function showHome(){
+      $this->view->showHome();
+      
     }
-  //  public function showAllProduct($id){
-   //     $product = $this->model->getProductById($id);
-    //    if($product){
-      //      $this->view->showDescription($product);
-     //   }
-       // else{
-      //      $this->view->error("error al insertar tarea");
-      //  }
-  //  }
-}
-?>
+  }
+  ?>

@@ -1,8 +1,8 @@
 <?php
-require_once './app/model/ProductsModel.php';
-require_once './app/model/CategoryModel.php';
-require_once './app/view/ProductsView.php';
-require_once './app/helpers/Login.helper.php';
+require_once './app/models/ProductsModel.php';
+require_once './app/views/ProductsView.php';
+require_once './app/models/CategoryModel.php';
+require_once './app/helpers/LoginHelper.php';
 
 
 class productController{
@@ -22,17 +22,17 @@ class productController{
 
 
   public function showProducts(){
-    session_start();
-    $productosbyid= $this->model->getproductos();
+    
+    $productosbyid= $this->model->getProducts();
     $logged= $this->helper->logged();
-    $this->view->showProductos($productosbyid, $logged);
+    $this->view->showProducts($productosbyid, $logged);
    
 
     }
 
     public function showDescription($id) {
       session_start();
-      $descriptionProducts= $this->model->getDescription($id);
+      $descriptionProducts= $this->model->getDescriptionProducts($id);
       $this->view->showDescription($descriptionProducts);
     }
 
@@ -40,36 +40,34 @@ class productController{
 
     function addProducts() {
       // TODO: validar entrada de datos
-      $prenda_id = $_POST['prenda_id'];
       $id_compra = $_POST['id_compra'];
       $talle = $_POST['talle'];
       $hora = $_POST['hora'];
       $vendedor = $_POST['vendedor'];
 
-      $this->model->insertProduct($prenda_id, $id_compra,$talle, $hora ,$vendedor);
+      $this->model->insertProducts($id_compra,$talle, $hora ,$vendedor);
 
       header("Location: " . BASE_URL. "productos"); 
   }
  
   function deleteproducts($id) {
       $this->model->deleteProductsById($id);
-      header("Location: " . BASE_URL."Productos");
+      header("Location: " . BASE_URL."productos");
   }
-  function showFormEditPoducts($Productbyid){
+  function showFormEditPoducts($productsbyid){
     session_start();
     $this->view->showFormEdit($productsbyid);
   }
 
-   public function editProduct($id) {
+   public function editProducts($id) {
     $productsbyid=$this->model->getProductsbyid($id);
     $this->view->showEdit($productsbyid);
-    if (!empty($_POST['prenda_id'])&& (!empty($_POST['id_compra'])) && (!empty($_POST['talle']))&& (!empty($_POST['hora']))&&(!empty($_POST['venderor']))){
-      $prenda_id = $_POST['prenda_id'];
+    if ( (!empty($_POST['id_compra'])) && (!empty($_POST['talle']))&& (!empty($_POST['hora']))&&(!empty($_POST['venderor']))){
       $id_compra = $_POST['id_compra'];
       $talle = $_POST['talle'];
       $hora = $_POST['hora'];
       $vendedor = $_POST['vendedor'];
-    $id=$this->model->updateProducts($id_compra,$prenda_id,$talle,$hora,$vendedor);
+    $id=$this->model->updateProducts($id,$id_compra,$talle,$hora,$vendedor);
       header("Location: " . BASE_URL."productos");
   }
 }

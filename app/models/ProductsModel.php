@@ -4,27 +4,27 @@ class productsModel{
     private $db;
 
     public function __construct(){
-        $this->db = new PDO('mysql:host=localhost;'.'dbname=db_tpe;charset=utf8','root','');
+        $this->db = new PDO('mysql:host=localhost;'.'dbname=db_productos;charset=utf8','root','');
     }
     
     function getProducts(){
 
     
-        $query = $this->db->prepare("SELECT * FROM autos");
+        $query = $this->db->prepare("SELECT * FROM productos");
         $query->execute();
     
-        $autosbyid = $query->fetchAll(PDO::FETCH_OBJ);
+        $productosbyid = $query->fetchAll(PDO::FETCH_OBJ);
 
-       return $autosbyid;
+       return $productosbyid;
        
     
     }
 
     
     
-    public function insertProducts( $prenda_id, $id_compra, $talle, $hora, $vendedor) {
-        $query = $this->db->prepare("INSERT INTO productos (prenda_id, id_compra, talle, hora, vendedor) VALUES (?,?,?,?,?)");
-        $query->execute([ $prenda_id, $id_compra, $talle, $hora, $vendedor]);
+    public function insertProducts($id_compra, $talle, $hora, $vendedor) {
+        $query = $this->db->prepare("INSERT INTO productos (id_compra, talle, hora, vendedor) VALUES (?,?,?,?)");
+        $query->execute([$id_compra, $talle, $hora, $vendedor]);
 
         return $this->db->lastInsertId();
     }
@@ -51,10 +51,10 @@ class productsModel{
        return $productsbyid;
     }
 
-    public function updateProducts($prenda_id, $id_compra, $talle, $hora, $vendedor) {
-        $query = $this->getProductsbyid($id_compra,$prenda_id,$talle,$hora,$vendedor);
-        $query = $this->db->prepare('UPDATE productos SET prenda_id=?, id_compra=?,talle=?,hora=?,vendedor=? WHERE id = ?');
-        $query->execute([$prenda_id, $id_compra, $talle, $hora, $vendedor]);
+    public function updateProducts($id, $id_compra, $talle, $hora, $vendedor) {
+        $query = $this->getProductsbyid($id);
+        $query = $this->db->prepare('UPDATE productos SET id_compra=?, talle=?, hora=?, vendedor=? WHERE id = ?');
+        $query->execute([$id, $id_compra, $talle, $hora, $vendedor]);
         
     }
 

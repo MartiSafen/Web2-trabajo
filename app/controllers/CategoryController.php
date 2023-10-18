@@ -1,8 +1,8 @@
 <?php
 
-require_once './app/model/CategoryModel.php';
-require_once './app/view/CategoryView.php';
-require_once './app/helpers/login.helper.php';
+require_once './app/models/CategoryModel.php';
+require_once './app/helpers/LoginHelper.php';
+require_once'./app/views/CategoryView.php';
 
 class categoriaController{
 
@@ -18,7 +18,7 @@ class categoriaController{
   
   
   public function showCategorias(){
-    session_start();
+ 
     $categoriabyid= $this->model->getCategoria();
     $logged= $this->helper->logged();
     $this->view->showCategoria($categoriabyid,$logged);
@@ -31,7 +31,7 @@ class categoriaController{
       $producto=$_POST['producto'];
       $tela=$_POST['tela'];
       $color=$_POST['color'];
-      $this->model->insertComprador($prenda_id,$producto, $tela,$color);
+      $this->model->insertCategoria($prenda_id, $producto, $tela, $color);
       header("Location: " . BASE_URL. "categorias"); 
 }
 
@@ -44,9 +44,9 @@ function showFormEdit($categoriabyid){
   session_start();
   $this->view->showFormEdit($categoriabyid);
 }
-function formEditcategoria($id_categoria)
+function formEditCategoria($prenda_id)
 { //Traigo los datos de este id y los inserto el en form
-    $categoriabyid = $this->model->getCategoriabyid($id_categoria);
+    $categoriabyid = $this->model->getCategoriabyid($prenda_id);
     $this->view->showFormEdit($categoriabyid);
 }
 
@@ -57,9 +57,17 @@ public function editCategoria($prenda_id) {
   $producto=$_POST['producto'];
   $tela=$_POST['tela'];
   $color=$_POST['color'];
-  $prenda_id=$this->model->updateCategoria($prenda_id,$producto,$tela,$color);
+  $prenda_id=$this->model->updateCategoria($producto,$tela,$color,$prenda_id);
     header("Location: " . BASE_URL. "categorias");
 }
+}
+function filter(){
+  if(isset ($_POST['selected'])&&(!empty($_POST['selected']))){
+      $selected = $_POST['selected'];
+      $productbycategory = $this->model->getProductsAndCategorias($selected);
+      $this->view->showCategorias($productbycategory);
+
+    }
 }
 
 
