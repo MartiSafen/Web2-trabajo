@@ -31,14 +31,14 @@ class productController{
     }
 
     public function showDescription($id) {
-      session_start();
+      //session_start();
       $descriptionProducts= $this->model->getDescriptionProducts($id);
       $this->view->showDescription($descriptionProducts);
     }
 
     
 
-    function addProducts() {
+    public function addProducts() {
       // TODO: validar entrada de datos
       $id_compra = $_POST['id_compra'];
       $talle = $_POST['talle'];
@@ -46,7 +46,7 @@ class productController{
       $vendedor = $_POST['vendedor'];
 
       $this->model->insertProducts($id_compra,$talle, $hora ,$vendedor);
-
+      
       header("Location: " . BASE_URL. "productos"); 
   }
  
@@ -55,7 +55,7 @@ class productController{
       header("Location: " . BASE_URL."productos");
   }
   function showFormEditPoducts($productsbyid){
-    session_start();
+   // session_start();
     $this->view->showFormEdit($productsbyid);
   }
 
@@ -72,9 +72,9 @@ class productController{
   }
 }
 
-function formEditProducts($id)
+function formEditProducts($productsbyid)
 { //Traigo los datos de este id y los inserto el en form
-    $productsbyid = $this->model->getproductsbyid($id);
+    $productsbyid = $this->model->getproductsbyid($productsbyid);
     $this->view->showFormEdit($productsbyid);
 
 

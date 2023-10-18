@@ -2,8 +2,6 @@
 <h5>Editar items</h5>
 {foreach from=$productsbyid item=$productos}
 <form action="formEdit/{$productos->id}" method="POST" class="form">
-    <label>Prenda_id</label>
-        <input type="text"  name="prenda_id" class="form-control"value="{$productos->prenda_id}">
     <label>id_compra</label>
         <input type="text"  name="id_compra" class="form-control" value="{$productos->id_compra}">
     <label>talle</label>

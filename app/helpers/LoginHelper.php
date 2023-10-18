@@ -7,8 +7,8 @@ class loginHelper {
 
     public function login($usuario){
         session_start();
-        $_SESSION['user'] = $usuario->user;
-        $_SESSION['password'] = $usuario->password;
+        $_SESSION['USER_ID'] = $usuario->id;
+        $_SESSION['USER_USER'] = $usuario->user;
         $_SESSION['ISLOGGED'] = true;
 
     }

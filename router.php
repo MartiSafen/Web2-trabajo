@@ -71,6 +71,7 @@ switch($params[0]){
         break;
 
     case 'formEdit':
+        $productsbyid= $params[1];
         $productController->showFormEditPoducts($productsbyid);
           $id = $params[1];
            $productController->editProducts($id);

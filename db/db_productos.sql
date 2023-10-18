@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-10-2023 a las 01:11:31
+-- Tiempo de generación: 18-10-2023 a las 02:58:37
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -66,10 +66,9 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`id`, `id_compra`, `talle`, `hora`, `vendedor`) VALUES
 (1, 1, 's', '2023-10-11', 'martina'),
-(2, 2, 'l', '2023-10-26', 'francisco'),
 (3, 2, 'l', '2023-10-26', 'francisco'),
 (4, 4, '42', '2023-10-01', 'martina'),
-(6, 6, 'm', '2023-10-05', 'francisco');
+(6, 6, 'm', '2023-10-05', 'martina');
 
 -- --------------------------------------------------------
 
@@ -111,7 +110,8 @@ ALTER TABLE `productos`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user` (`user`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
