@@ -31,7 +31,7 @@ class productController{
     }
 
     public function showDescription($id) {
-      //session_start();
+      session_start();
       $descriptionProducts= $this->model->getDescriptionProducts($id);
       $this->view->showDescription($descriptionProducts);
     }
@@ -55,7 +55,7 @@ class productController{
       header("Location: " . BASE_URL."productos");
   }
   function showFormEditPoducts($productsbyid){
-   // session_start();
+    session_start();
     $this->view->showFormEdit($productsbyid);
   }
 
