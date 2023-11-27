@@ -1,0 +1,24 @@
+<?php
+require_once './templates/header.phtml';
+?>
+<h5>Editar items</h5>
+
+<form action="formEdit/<?=$id?>" method="POST" class="form">
+    <label>id_categoria</label>
+        <input type="text"  name="id_categoria" class="form-control" placeholder=<?=$productos->id_categoria?>>
+    <label>nombre</label>
+        <input type="text" name="nombre" class="form-control" placeholder=<?=$productos->nombre?>>
+     <label>talle</label>
+        <input type="text" name="talle" class="form-control"placeholder=<?=$productos->talle?>>
+        <label>precio</label>
+        <input type="text" name="precio" class="form-control"placeholder=<?=$productos->precio?>>
+     <label>vendedor</label>
+        <input type="text" name="vendedor" class="form-control" placeholder=<?=$productos->vendedor?>>
+    <div class="mt-4">
+      <button type="submit" class="btn btn-primary mt-2">Editar</a>
+    </div>
+</form>
+<?php 
+require_once './templates/footer.phtml'; 
+?>
+
