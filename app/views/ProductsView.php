@@ -1,41 +1,29 @@
 <?php
 
-require_once 'libs/smarty-master/libs/Smarty.class.php';
-
+require_once './app/controllers/ProductsController.php';
 class productsView{
 
-    private $smarty;
-
-    public function __construct(){
-        $this->smarty = new Smarty();
-    }
-
-    function showProducts($productosbyid , $logged){
-        $this->smarty->assign('logged', $logged);
-        $this->smarty->assign('productosbyid', $productosbyid);
-        $this->smarty->display('productos.tpl');
-
+    function showProducts($productos){
+       require './templates/productos.phtml';
     }
 
 
-function showFormEdit($productosbyid){
-    $this->smarty->assign('productosbyid', $productosbyid);
-    $this->smarty->display('formEdit.tpl');
-
+function showFormEdit($id, $productos){
+  require './templates/formEdit.phtml';
+}
+function showAddProduct(){
+    require './templates/formAddProducts.phtml';
 }
 
-function showEdit($productosbyid){
-    $this->smarty->assign('productosbyid', $productosbyid);
-    
-}
 
 function showDescription($productosbyid){
-    $this->smarty->assign('productosbyid', $productosbyid);
-
-    $this->smarty->display('productos.tpl');
+    require './templates/productos.phtml';
   }
 
 
+  function showError($error = null){
+    require './templates/error.phtml';
+  }
 
 }
 

@@ -1,0 +1,18 @@
+<?php
+require_once './templates/header.phtml';
+//if ($logged) :?>
+    <form class="form" action="addCategoria" method="POST">
+    <div class="mb-3">
+    <label class="form-label">material</label>
+    <input type="text" name="metarial" class="form-control">
+    </div>
+    <div class="mb-3">
+    <label class="form-label" >color</label>
+    <input type="text" name="color" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Insertar</button>
+    </form>
+    <?php
+    // endif; 
+    require_once './templates/footer.phtml'
+    ?>

@@ -42,12 +42,6 @@ switch($params[0]){
     case 'login':
         $loginController->showLogin();
         break;
-        
-
-    case 'admin':
-        $productController->showProducts();
-        break;
-
 
     case 'validate':
             $loginController->validateUser();
@@ -64,21 +58,12 @@ switch($params[0]){
         $id = $params[1];
         $productController->deleteproducts($id);
         break;
-        
-    case 'formEditProducts':
+    case 'formEdit':
         $id = $params[1];
         $productController->formEditProducts($id);
-        break;
-
-    case 'formEdit':
-        $productsbyid= $params[1];
-        $productController->showFormEditPoducts($productsbyid);
           $id = $params[1];
            $productController->editProducts($id);
          break;
-    case 'filter':
-       $categoriaController->filter();
-          break;
 
     case 'categoria':
             $categoriaController->showCategorias();
@@ -89,20 +74,16 @@ switch($params[0]){
             break;
 
     case 'deleteCategoria':
-            $prenda_id = $params[1];
-            $categoriaController->deleteCategoria($prenda_id);
+            $id = $params[1];
+            $categoriaController->deleteCategoria($id);
             break;
 
     case 'formEditCategoria':
-            $categoriaController->showFormEdit($categoriabyid);
-            $prenda_id = $params[1];
-            $categoriaController->editCategoria($prenda_id);
+        $id_categoria = $params[1];
+         $categoriaController->formEditCategoria($id_categoria);
+            $id_categoria = $params[1];
+            $categoriaController->editCategoria($id_categoria);
             break;
-
-        case 'formEditCategoria':
-              $prenda_id = $params[1];
-              $categoriaController->formEditCategoria($prenda_id);
-                break;
 
 
          default:

@@ -10,7 +10,7 @@ class productsModel{
     function getProducts(){
 
     
-        $query = $this->db->prepare("SELECT * FROM productos");
+        $query = $this->db->prepare("SELECT * FROM productos INNER JOIN categorias ON categorias.id_categoria = productos.id_categoria");
         $query->execute();
     
         $productosbyid = $query->fetchAll(PDO::FETCH_OBJ);
@@ -22,10 +22,9 @@ class productsModel{
 
     
     
-    public function insertProducts($id_compra, $talle, $hora, $vendedor) {
-        $query = $this->db->prepare("INSERT INTO productos (id_compra, talle, hora, vendedor) VALUES (?,?,?,?)");
-        $query->execute([$id_compra, $talle, $hora, $vendedor]);
-
+    public function insertProducts($id_categoria, $nombre, $talle, $precio, $vendedor) {
+        $query = $this->db->prepare('INSERT INTO productos(id_categoria, nombre, talle, precio, vendedor) VALUES (?,?,?,?,?)');
+        $query->execute([$id_categoria, $nombre, $talle, $precio, $vendedor]);
         return $this->db->lastInsertId();
     }
 
@@ -46,17 +45,16 @@ class productsModel{
         $query = $this->db->prepare("SELECT * FROM productos WHERE id=?");
         $query->execute([$id]);
     
-        $productsbyid = $query->fetchAll(PDO::FETCH_OBJ);
+        return $query->fetch(PDO::FETCH_OBJ);
 
-       return $productsbyid;
     }
 
-    public function updateProducts($id, $id_compra, $talle, $hora, $vendedor) {
-        $query = $this->getProductsbyid($id);
-        $query = $this->db->prepare('UPDATE productos SET id_compra=?, talle=?, hora=?, vendedor=? WHERE id = ?');
-        $query->execute([$id, $id_compra, $talle, $hora, $vendedor]);
+    public function updateProducts($id_categoria,$nombre,$talle,$precio,$vendedor,$id) {
+        $query = $this->db->prepare('UPDATE productos SET id_categoria=?, nomnre=?, talle=?, precio=?, vendedor=? WHERE id = ?');
+        $query->execute([$id_categoria,$nombre,$talle,$precio,$vendedor,$id]);
         
     }
+
 
 
 
